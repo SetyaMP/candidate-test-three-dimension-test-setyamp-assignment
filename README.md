@@ -14,3 +14,6 @@
 ### Expected Result
 
 ![Expected Result](images/expected-result.jpg)
+
+[![Live Demo](https://img.shields.io/badge/Live-Demo-green?style=for-the-badge)](https://threed.nyawiji.com/)
+[![GitHub](https://img.shields.io/badge/Source-Code-black?style=for-the-badge&logo=github)](https://github.com/nyawijicode)
