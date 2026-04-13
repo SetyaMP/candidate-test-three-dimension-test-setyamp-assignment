@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Wood Illustration</title>
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            width: 100%; height: 100%;
+            background: #000;
+            overflow: hidden;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        #illustration-3d-container {
+            width: 100vw;
+            height: 100vh;
+            display: block;
+            position: fixed;
+            top: 0; left: 0;
+        }
+
+        /* Loading */
+        #loading {
+            position: fixed; inset: 0;
+            background: #000;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            z-index: 200;
+        }
+        .spinner {
+            width: 42px; height: 42px;
+            border: 3px solid rgba(255,255,255,0.12);
+            border-top-color: #c9a96e;
+            border-radius: 50%;
+            animation: spin 0.85s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        #loading p { color: rgba(255,255,255,0.45); font-size: 13px; margin-top: 14px; letter-spacing: 0.05em; }
+
+        /* HUD */
+        .hud { position: fixed; inset: 0; pointer-events: none; z-index: 50; }
+
+        .title-card {
+            position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
+            background: rgba(255,255,255,0.07);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(255,255,255,0.14);
+            border-radius: 12px;
+            padding: 10px 30px;
+            text-align: center;
+            white-space: nowrap;
+        }
+        .title-card h1 { color: #fff; font-size: 14px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+        .title-card p  { color: rgba(255,255,255,0.4); font-size: 11px; margin-top: 2px; }
+
+        .info-panel {
+            position: absolute; bottom: 20px; left: 20px;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.10);
+            border-radius: 12px;
+            padding: 14px 18px;
+            color: rgba(255,255,255,0.65);
+            font-size: 12px; line-height: 2;
+        }
+        .info-panel .row { display: flex; align-items: center; gap: 8px; }
+        .info-panel .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+        .info-panel .sep { border-top: 1px solid rgba(255,255,255,0.1); margin: 6px 0; }
+        .info-panel .hint { color: rgba(255,255,255,0.35); font-size: 11px; }
+
+        @media (max-width: 480px) {
+            .title-card h1 { font-size: 11px; }
+            .info-panel { font-size: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Loading -->
+    <div id="loading">
+        <div class="spinner"></div>
+        <p>Loading 3D model…</p>
+    </div>
+
+    <!-- Canvas masuk sini -->
+    <div id="illustration-3d-container"></div>
+
+    <!-- HUD -->
+    <div class="hud">
+        <div class="title-card">
+            <h1>Wood 3D Illustration</h1>
+            <p>Three.js · FBX Model · Interactive</p>
+        </div>
+        <div class="info-panel">
+            <div class="row"><span class="dot" style="background:#ef4444"></span> X Axis</div>
+            <div class="row"><span class="dot" style="background:#22c55e"></span> Y Axis</div>
+            <div class="row"><span class="dot" style="background:#3b82f6"></span> Z Axis</div>
+            <div class="sep"></div>
+            <div class="hint">🖱 Drag · Scroll · Right-click</div>
+        </div>
+    </div>
+
+    <!-- Three.js import map -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.161.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.161.0/examples/jsm/",
+            "three-mesh-bvh": "https://unpkg.com/three-mesh-bvh@0.7.4/build/index.module.js",
+            "three-bvh-csg": "https://unpkg.com/three-bvh-csg@0.0.16/build/index.module.js"
+        }
+    }
+    </script>
+
+    <script type="module" src="js/illustration/illustration-three.js"></script>
+
+</body>
+</html>
